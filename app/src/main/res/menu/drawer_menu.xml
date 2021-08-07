@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <!-- single means we can only choose from items in this group -->
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_diagram"
+            android:icon="@drawable/ic_pie_chart"
+            android:title="Your diagram" />
+
+
+        <item
+            android:id="@+id/nav_bill"
+            android:icon="@drawable/ic_baseline_attach_money"
+            android:title="Bill" />
+
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_baseline_category"
+            android:title="Category" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_baseline_settings"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_baseline_notifications"
+            android:title="Notifications" />
+    </group>
+
+    <!-- separate category for sharing (there's no need to do that, it's just me),
+    it won't be selected, only triggers an action
+    -->
+
+    <item android:title="Communicate">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_baseline_share"
+                android:title="Share" />
+
+        </menu>
+
+    </item>
+
+</menu>
