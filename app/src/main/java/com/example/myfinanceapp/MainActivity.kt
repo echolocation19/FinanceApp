@@ -13,13 +13,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.myfinanceapp.fragments.BillFragment
-import com.example.myfinanceapp.fragments.CategoryFragment
-import com.example.myfinanceapp.fragments.NotificationFragment
-import com.example.myfinanceapp.fragments.SettingsFragment
+import com.example.myfinanceapp.fragments.*
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
     private lateinit var drawer: DrawerLayout
@@ -27,6 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // Handle with toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -37,10 +35,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
 //        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu)
 //        supportActionBar?.title = ""
 
-        // Handle with bank account button
-        val btnAccountBank: Button = findViewById(R.id.btnBankAccount)
-        btnAccountBank.visibility = View.VISIBLE
-        btnAccountBank.setOnClickListener(this)
+//        // Handle with bank account button
+//        val btnAccountBank: Button = findViewById(R.id.btnBankAccount)
+//        btnAccountBank.visibility = View.VISIBLE
+//        btnAccountBank.setOnClickListener(this)
 
         // handle with navigation drawer
         drawer = findViewById(R.id.drawer_layout)
@@ -53,12 +51,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         // handling with nav drawer's items
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
+
+        // open diagrams fragment as default
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DiagramsFragment()).commit()
+            navigationView.setCheckedItem(R.id.nav_diagram)
+        }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar, menu)
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.menu_toolbar, menu)
+//        return true
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
@@ -70,19 +74,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         return true
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            // handle with changing bnk account btn
-            R.id.btnBankAccount -> {
-                Toast.makeText(this, "You clicked on bank account btn", Toast.LENGTH_SHORT).show()
-                val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
-                val changeBnkAccountPopupView: View = layoutInflater.inflate(R.layout.popup_change_account, null)
-                dialogBuilder.setView(changeBnkAccountPopupView)
-                val dialog = dialogBuilder.create()
-                dialog.show()
-            }
-        }
-    }
+//    override fun onClick(v: View?) {
+//        when(v?.id) {
+//            // handle with changing bnk account btn
+//            R.id.btnBankAccount -> {
+//                Toast.makeText(this, "You clicked on bank account btn", Toast.LENGTH_SHORT).show()
+//                val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+//                val changeBnkAccountPopupView: View = layoutInflater.inflate(R.layout.popup_change_account, null)
+//                dialogBuilder.setView(changeBnkAccountPopupView)
+//                val dialog = dialogBuilder.create()
+//                dialog.show()
+//            }
+//        }
+//    }
 
     // I'm overriding this because I don't want to close activity
     // instead I want to close left navigation drawer only
@@ -111,6 +115,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
             }
             R.id.nav_share -> {
                 Toast.makeText(this, "Sharing", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_diagram -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DiagramsFragment()).commit()
             }
         }
         drawer.closeDrawer(GravityCompat.START)

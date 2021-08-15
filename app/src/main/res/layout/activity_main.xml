@@ -9,6 +9,7 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
+
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,48 +19,6 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/app_toolbar"
-            />
-
-        <TextView
-            android:id="@+id/tvAccountTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10000"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintStart_toStartOf="@id/toolbar"
-            app:layout_constraintEnd_toEndOf="@id/toolbar"
-            />
-
-
-        <Button
-            android:id="@+id/btnIncomes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tvAccountTotal"
-            app:layout_constraintTop_toBottomOf="@id/tvAccountTotal"
-            android:text="Incomes"
-            />
-
-        <Button
-            android:id="@+id/btnOutcomes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tvAccountTotal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvAccountTotal"
-            android:text="Outcomes"
-            />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:cardCornerRadius="4dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintTop_toBottomOf="@id/btnOutcomes"
             />
 
         <FrameLayout
