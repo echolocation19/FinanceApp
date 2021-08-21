@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Handle with toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        setToolbar(toolbar)
 
         // handle with menu left button in toolbar
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -40,13 +40,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        btnAccountBank.visibility = View.VISIBLE
 //        btnAccountBank.setOnClickListener(this)
 
-        // handle with navigation drawer
-        drawer = findViewById(R.id.drawer_layout)
-        val toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawer, toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
 
         // handling with nav drawer's items
         val navigationView: NavigationView = findViewById(R.id.nav_view)
@@ -97,6 +90,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             super.onBackPressed()
         }
+    }
+
+    // handle with navigation drawer
+    public fun setToolbar(toolbar: Toolbar?) {
+        setSupportActionBar(toolbar)
+        drawer = findViewById(R.id.drawer_layout)
+        val toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawer, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close)
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

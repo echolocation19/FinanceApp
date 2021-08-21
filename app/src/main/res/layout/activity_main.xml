@@ -16,15 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/app_toolbar"
-            />
-
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/app_toolbar"
+                />
+
+
+        </FrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

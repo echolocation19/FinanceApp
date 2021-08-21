@@ -10,18 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnBankAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="This account"
-            android:visibility="gone"
-            android:background="@color/purple_500"
-            android:textColor="@color/white"
-            />
+<!--        <Button-->
+<!--            android:id="@+id/btnBankAccount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:text="This account"-->
+<!--            android:visibility="gone"-->
+<!--            android:background="@color/purple_500"-->
+<!--            android:textColor="@color/white"-->
+<!--            />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

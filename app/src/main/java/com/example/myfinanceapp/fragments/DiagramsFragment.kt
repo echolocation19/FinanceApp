@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.example.myfinanceapp.MainActivity
 import com.example.myfinanceapp.R
 
 class DiagramsFragment : Fragment(), View.OnClickListener {
@@ -21,12 +22,11 @@ class DiagramsFragment : Fragment(), View.OnClickListener {
         return inflater.inflate(R.layout.fragment_diagrams, container, false)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_toolbar, menu)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbarFragment = view.findViewById<Toolbar>(R.id.toolbar)
+        (activity as MainActivity).setToolbar(toolbarFragment)
+        setHasOptionsMenu(true)
 //        val toolbar: Toolbar = view.findViewById(R.id.toolbarFragment)
 //        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 //        setHasOptionsMenu(true)
@@ -34,8 +34,10 @@ class DiagramsFragment : Fragment(), View.OnClickListener {
 //        val btnAccountBank: Button = view.findViewById(R.id.btnBankAccount)
 //        btnAccountBank.visibility = View.VISIBLE
 //        btnAccountBank.setOnClickListener(this)
+    }
 
-
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_toolbar, menu)
     }
 
     override fun onClick(v: View?) {
