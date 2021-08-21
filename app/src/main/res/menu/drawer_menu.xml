@@ -7,28 +7,28 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_diagram"
+            android:id="@+id/diagramsFragment"
             android:icon="@drawable/ic_pie_chart"
             android:title="Your diagram" />
 
 
         <item
-            android:id="@+id/nav_bill"
+            android:id="@+id/billFragment"
             android:icon="@drawable/ic_baseline_attach_money"
             android:title="Bill" />
 
         <item
-            android:id="@+id/nav_category"
+            android:id="@+id/categoryFragment"
             android:icon="@drawable/ic_baseline_category"
             android:title="Category" />
 
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/settingsFragment"
             android:icon="@drawable/ic_baseline_settings"
             android:title="Settings" />
 
         <item
-            android:id="@+id/nav_notifications"
+            android:id="@+id/notificationFragment"
             android:icon="@drawable/ic_baseline_notifications"
             android:title="Notifications" />
     </group>

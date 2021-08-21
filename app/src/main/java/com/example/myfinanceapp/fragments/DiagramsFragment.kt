@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.myfinanceapp.MainActivity
 import com.example.myfinanceapp.R
+import kotlinx.android.synthetic.main.fragment_diagrams.*
 
 class DiagramsFragment : Fragment(), View.OnClickListener {
 
@@ -24,16 +25,7 @@ class DiagramsFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbarFragment = view.findViewById<Toolbar>(R.id.toolbar)
-        (activity as MainActivity).setToolbar(toolbarFragment)
-        setHasOptionsMenu(true)
-//        val toolbar: Toolbar = view.findViewById(R.id.toolbarFragment)
-//        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-//        setHasOptionsMenu(true)
-//        // Handle with bank account button
-//        val btnAccountBank: Button = view.findViewById(R.id.btnBankAccount)
-//        btnAccountBank.visibility = View.VISIBLE
-//        btnAccountBank.setOnClickListener(this)
+        (requireActivity() as MainActivity).setupActionBar(toolbarDiagram as Toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

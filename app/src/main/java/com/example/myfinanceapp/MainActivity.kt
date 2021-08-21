@@ -8,63 +8,67 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavHost
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.*
+import com.example.myfinanceapp.databinding.ActivityMainBinding
 import com.example.myfinanceapp.fragments.*
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
 
-    private lateinit var drawer: DrawerLayout
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navController = navHostFragment.findNavController()
 
-        // Handle with toolbar
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setToolbar(toolbar)
+        appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf(R.id.diagramsFragment,
+            R.id.billFragment, R.id.categoryFragment, R.id.settingsFragment,
+            R.id.notificationFragment),
+            // adds hamburger icon
+            drawer_layout
+        )
 
-        // handle with menu left button in toolbar
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_menu)
-//        supportActionBar?.title = ""
+        // Handle with navigation drawer
+        nav_view.setupWithNavController(navController)
 
-//        // Handle with bank account button
-//        val btnAccountBank: Button = findViewById(R.id.btnBankAccount)
-//        btnAccountBank.visibility = View.VISIBLE
-//        btnAccountBank.setOnClickListener(this)
-
-
-        // handling with nav drawer's items
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
-
-        // open diagrams fragment as default
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DiagramsFragment()).commit()
-            navigationView.setCheckedItem(R.id.nav_diagram)
-        }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_toolbar, menu)
-//        return true
-//    }
+    fun setupActionBar(toolbar: Toolbar) {
+        setSupportActionBar(toolbar)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navController = navHostFragment.findNavController()
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-//            android.R.id.home -> {
-//                Toast.makeText(this, "Menu clicked", Toast.LENGTH_SHORT).show()
-//            }
-            R.id.miSummary -> Toast.makeText(this, "Summary clicked", Toast.LENGTH_SHORT).show()
-        }
-        return true
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
 //    override fun onClick(v: View?) {
@@ -81,51 +85,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        }
 //    }
 
-    // I'm overriding this because I don't want to close activity
-    // instead I want to close left navigation drawer only
-    override fun onBackPressed() {
-        // START because I work with left nav drawer
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    // handle with navigation drawer
-    public fun setToolbar(toolbar: Toolbar?) {
-        setSupportActionBar(toolbar)
-        drawer = findViewById(R.id.drawer_layout)
-        val toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawer, toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.nav_bill -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, BillFragment()).commit()
-            }
-            R.id.nav_category -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CategoryFragment()).commit()
-            }
-            R.id.nav_notifications -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, NotificationFragment()).commit()
-            }
-            R.id.nav_settings -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, SettingsFragment()).commit()
-            }
-            R.id.nav_share -> {
-                Toast.makeText(this, "Sharing", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_diagram -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DiagramsFragment()).commit()
-            }
-        }
-        drawer.closeDrawer(GravityCompat.START)
-        return true
-    }
 
 }

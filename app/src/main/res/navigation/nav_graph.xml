@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/diagramsFragment">
+
+    <fragment
+        android:id="@+id/billFragment"
+        android:name="com.example.myfinanceapp.fragments.BillFragment"
+        android:label="fragment_bill"
+        tools:layout="@layout/fragment_bill" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.myfinanceapp.fragments.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/diagramsFragment"
+        android:name="com.example.myfinanceapp.fragments.DiagramsFragment"
+        android:label="fragment_diagrams"
+        tools:layout="@layout/fragment_diagrams" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.myfinanceapp.fragments.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.myfinanceapp.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/totalFragment"
+        android:name="com.example.myfinanceapp.fragments.toolbar.TotalFragment"
+        android:label="fragment_total"
+        tools:layout="@layout/fragment_total" />
+</navigation>

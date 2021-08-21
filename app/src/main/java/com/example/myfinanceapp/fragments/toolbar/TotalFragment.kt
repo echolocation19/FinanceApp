@@ -1,4 +1,4 @@
-package com.example.myfinanceapp.fragments
+package com.example.myfinanceapp.fragments.toolbar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,17 +8,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.myfinanceapp.MainActivity
 import com.example.myfinanceapp.R
-import kotlinx.android.synthetic.main.fragment_bill.*
 import kotlinx.android.synthetic.main.fragment_diagrams.*
+import kotlinx.android.synthetic.main.fragment_total.*
 
-class BillFragment : Fragment() {
+class TotalFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bill, container, false)
+        return inflater.inflate(R.layout.fragment_total, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
